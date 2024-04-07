@@ -4,7 +4,7 @@ from config.db import connect_to_mongodb
 from bson.objectid import ObjectId
 
 
-# Connect to MongoDB
+
 db = connect_to_mongodb()
 
 # Create Students
@@ -16,18 +16,18 @@ async def create_student(student: Student):
 async def list_students(country: str = Query(None, description="Country to filter by"), age: int = Query(None, description="Minimum age to filter by")):
     filter_query = {}
     
-    # Apply country filter if provided
+    
     if country:
         filter_query["address.country"] = country
     
-    # Apply age filter if provided
+    
     if age is not None:
         filter_query["age"] = {"$gte": age}
     
-    # Fetch students from the database based on the filter query
+    
     response = db.students.find(filter_query)
     
-    # Convert the cursor to a list of dictionaries
+   
     student_list = []
     for student in response:
         student_data = {

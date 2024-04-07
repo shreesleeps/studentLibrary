@@ -6,7 +6,7 @@ from routers.student_routers import router as student_router
 
 app = FastAPI()
 
-# Include the student routers
+
 app.include_router(student_router, prefix="/api")
 
 
